@@ -26,6 +26,7 @@ void insertAtBeg()
     else
     {
 	   ptr->next=head;
+           head->prev=ptr;
 	   ptr->prev=NULL;
 	   head=ptr;
     }
