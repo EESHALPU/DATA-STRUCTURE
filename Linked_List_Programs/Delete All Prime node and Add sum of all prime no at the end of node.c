@@ -80,9 +80,24 @@ void delete_prime()  // delete prime node and add sum at the last
 
                 if(ptr==head)
                 {
-                    head=NULL;
-                    free(ptr);
+
+                   if(head==tail)
+                    {
+                        head=NULL;
+                        tail=NULL;
+                        free(ptr);
+                    }
+                    else
+                    {
+                        head=locnext;
+                        locnext->prev=NULL;
+                        free(ptr);
+                    }
+
+
                 }
+
+
 
                 else if(ptr->next==NULL)
                 {
@@ -106,9 +121,18 @@ void delete_prime()  // delete prime node and add sum at the last
     node* temp;
     temp=(node*)malloc(sizeof(node));
     temp->info=psum;
-    tail->next=temp;
-    temp->next=NULL;
-    printf("\n Sum of All prime node=%d",psum);
+    if(head==NULL)
+    {
+        head=tail=temp;
+        temp->next=temp->prev=NULL;
+    }
+    else
+    {
+        tail->next=temp;
+        temp->next=NULL;
+    }
+        printf("\n Sum of All prime node=%d",psum);
+        psum=0;
     }
 }
 
